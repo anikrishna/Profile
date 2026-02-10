@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anish Krishna - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & Babel for in-browser compilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Import Map to handle npm modules in the browser -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+        }
+    }
+    </script>
+
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'react';
+        import ReactDOM from 'react-dom/client';
+        import { 
+          Briefcase, 
+          Code, 
+          Award, 
+          GraduationCap, 
+          User, 
+          Linkedin, 
+          Mail, 
+          ChevronDown, 
+          ChevronUp, 
+          Menu, 
+          X,
+          Calendar,
+          MapPin,
+          ExternalLink,
+          Download
+        } from 'lucide-react';
+
+        // --- DATA ---
+        const resumeData = {
+          profile: {
+            name: "Anish Krishna",
+            title: "IT Transition Manager & Strategic Project Lead",
+            tagline: "Results-oriented IT leader with 21+ years of end-to-end experience.",
+            summary: `Results-oriented IT leader with 21 yrs of end-to-end exp spanning project management, transition, strategic analysis, team leadership, and software development. Demonstrated capability in steering large technical teams, managing complex client engagements, and governing full project lifecycles covering resource planning, budget control, change management, and risk mitigation.
+
+            Handled ownership of large-scale application portfolios within support and maintenance environments, ensuring operational stability, performance optimization, and uninterrupted service continuity. Strong BA background with 5+ yrs focused exp, complemented by deep technical foundations built over 8 yrs in software development. Highly proficient in Analytics, Documentation, Solution architecture, Implementation oversight, Stakeholder communication, and executive-level presentations, consistently delivering high-impact, business-aligned IT outcomes.`,
+            highlights: [
+              "16+ yrs extensive onsite IT exp within energy sector environments.",
+              "Successfully managed 80+ IT projects across onsite & hybrid delivery models.",
+              "Directed, structured, and led high-performance teams exceeding 75 resources.",
+              "Strong expertise in transition management, org structuring, and managed services operations."
+            ],
+            contact: {
+              linkedin: "https://www.linkedin.com/in/anishkrishna",
+              email: "anish.krishna@example.com", 
+              location: "Muscat, Oman", 
+              nationality: "Indian"
+            }
+          },
+          experience: [
+            {
+              role: "IT Demand Manager",
+              company: "Duqm Refinery and Petrochemical Industries Company LLC (OQ8)",
+              period: "Sep 2024 – Present",
+              description: [
+                "Directed end-to-end IT demand lifecycle including intake, assessment, prioritization and governance across enterprise functions.",
+                "Translated business needs into BRD, solution options, ROM estimates and feasibility evaluations to support investment decisions.",
+                "Implemented structured demand management framework with scoring model, approval gates and portfolio visibility.",
+                "Aligned demands with IT strategy, architecture standards, budget limits and resource capacity.",
+                "Facilitated stakeholder engagements to define scope, value, risks and interdependencies before project initiation.",
+                "Enabled leadership decision-making through dashboards, pipeline tracking and governance reporting."
+              ]
+            },
+            {
+              role: "Software Development Manager",
+              company: "Global Computer Services LLC",
+              period: "Nov 2022 – Aug 2024",
+              description: [
+                "Strategically planned and managed software development projects to align with business needs.",
+                "Led software development teams, ensuring efficient project execution and delivery.",
+                "Managed 75+ members team with strict SLA, KPIs and budget.",
+                "Managed four major government sector projects.",
+                "Established and enforced coding standards and quality assurance processes."
+              ]
+            },
+            {
+              role: "IT Project Engineer",
+              company: "Petroleum Development Oman (PDO), ISC Contract",
+              period: "Jan 2022 – Oct 2022",
+              description: [
+                "Developed detailed project plans and oversaw the execution of IT projects, ensuring adherence to scope, timelines, and resources.",
+                "Managed change management for the rollout of multiple corporate applications, reaching over 12,000 staff.",
+                "Implemented contractor lifecycle management for the client's largest manpower contract (ISC).",
+                "Defined asset management process for over 35,000 IT assets and initiated ISO/IEC 19770-1:2017 certification."
+              ]
+            },
+            {
+              role: "Team Lead, Application Tower",
+              company: "Petroleum Development Oman (PDO), ISC Contract",
+              period: "Jan 2021 – Dec 2021",
+              description: [
+                "Managed a team of 22 application guardians for PDO application support and maintenance.",
+                "Oversaw the support and maintenance of 220+ in-house developed applications.",
+                "Consistently achieved 104%+ SLA throughout the execution.",
+                "Executed the transition from the previous contract successfully."
+              ]
+            },
+            {
+              role: "IT Project Manager",
+              company: "Petroleum Development Oman (PDO), ISC Contract",
+              period: "Aug 2016 – Dec 2020",
+              description: [
+                "Delivered 17 Infra-internal projects on time, within scope, and budget.",
+                "Led and managed projects with multi-million dollar budgets.",
+                "Utilized Agile management techniques to oversee meetings, tasks, quality, and deployments.",
+                "Coordinated internal resources, stakeholders, and vendors to ensure smooth project transitions."
+              ]
+            },
+            {
+              role: "Business Analyst",
+              company: "Petroleum Development Oman (PDO), IT Contract",
+              period: "Jun 2011 – Jul 2016",
+              description: [
+                "Evaluated business processes and recommended optimal business practices.",
+                "Prepared FSD, BRD, Workflow diagrams, Use Case and wrote technical specifications.",
+                "Solved business problems and designed technical solutions as needed.",
+                "Developed and maintained documentation for business processes, system functionalities, and user guides."
+              ]
+            },
+            {
+              role: "Application Support Engineer",
+              company: "Petroleum Development Oman (PDO), IT Contract",
+              period: "Mar 2009 – May 2011",
+              description: [
+                "Responded to and resolved complex technical incidents and service requests.",
+                "Analyzed recurring issues, identified root causes, and implemented permanent solutions.",
+                "Collaborated with development teams and trained 1st line support staff.",
+                "Managed enhancement activities along with Business team and Portfolio Consultants."
+              ]
+            },
+            {
+              role: "IT Consultant",
+              company: "Petroleum Development Oman (PDO), IT Contract",
+              period: "Oct 2007 – Feb 2009",
+              description: [
+                "Analyzed business structures, technology usage, and goals.",
+                "Formulated improvement strategies based on research and facilitated cost-benefit analyses.",
+                "Provided recommendations for technology upgrades and optimizations to enhance operational efficiency."
+              ]
+            },
+            {
+              role: "Software Engineer",
+              company: "IVA Systems (P) Ltd",
+              period: "Oct 2004 – Oct 2007",
+              description: [
+                "Performed system requirement analysis and created comprehensive technical documentation.",
+                "Developed both web and desktop applications.",
+                "Designed and updated application interfaces and databases."
+              ]
+            }
+          ],
+          education: [
+            {
+              degree: "MSc IT",
+              school: "Karnataka State Open University, Mysore, India",
+              period: "Jun 2006 – Jul 2007"
+            },
+            {
+              degree: "GNIIT IT Diploma",
+              school: "National Institute for Information Technology, Bangalore, India",
+              period: "Jun 2001 – Sep 2004"
+            },
+            {
+              degree: "BSc Physics",
+              school: "Mahatma Gandhi College, University of Kerala, India",
+              period: "Jun 1998 – Apr 2001"
+            }
+          ],
+          certifications: [
+            "Prince 2®",
+            "Six Sigma Green Belt",
+            "ITIL V4®",
+            "Agile Scrum Master (ASM)"
+          ],
+          skills: {
+            "Project Management": ["Microsoft Project", "MS Planner", "Meister tasks", "Asana", "JIRA", "Trello", "GitHub", "Azure DevOps"],
+            "Web Technologies": ["HTML5", "Bootstrap", "CSS", "XML", "JavaScript", "jQuery", "Microsoft .Net (VB, C#, ASP.net, .Net Core)"],
+            "Design Tools": ["Adobe Photoshop", "Illustrator", "Microsoft Visio", "Figma", "Adobe Dreamweaver"],
+            "Reporting & Data": ["Power BI", "Tableau", "SAP Business Objects", "SQL Server", "Oracle", "MySQL"],
+            "Service & Resource Mgmt": ["HP Service Manager", "SMAX", "ManageEngine", "Resource Guru"],
+            "Emerging Tech": ["AI", "Machine Learning", "Blockchain", "IoT"]
+          }
+        };
+
+        // --- COMPONENTS ---
+
+        const NavLink = ({ href, children, mobile, onClick }) => (
+          <a 
+            href={href} 
+            onClick={onClick}
+            className={`${mobile ? 'block py-3 px-4 hover:bg-slate-800' : 'hover:text-amber-400'} transition-colors duration-200 font-medium`}
+          >
+            {children}
+          </a>
+        );
+
+        const SectionTitle = ({ title, icon: Icon }) => (
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-3 bg-amber-500 rounded-lg shadow-lg text-white">
+              <Icon size={24} />
+            </div>
+            <h2 className="text-3xl font-bold text-slate-800 tracking-tight">{title}</h2>
+          </div>
+        );
+
+        const ExperienceCard = ({ item, isLast }) => {
+          const [isOpen, setIsOpen] = useState(false);
+
+          return (
+            <div className={`relative pl-8 md:pl-0 ${!isLast ? 'pb-12' : ''}`}>
+              {/* Timeline line for desktop */}
+              <div className="hidden md:block absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2"></div>
+              
+              {/* Timeline dot */}
+              <div className="absolute left-0 md:left-[50%] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow-sm -translate-x-[5px] md:-translate-x-1/2 mt-1.5 z-10"></div>
+
+              <div className={`md:flex justify-between items-start gap-12 ${!isOpen ? 'cursor-pointer group' : ''}`} onClick={() => !isOpen && setIsOpen(true)}>
+                <div className="md:w-1/2 md:text-right md:pr-12 mb-2 md:mb-0">
+                  <h3 className="text-xl font-bold text-slate-800 group-hover:text-amber-600 transition-colors">{item.role}</h3>
+                  <p className="text-slate-600 font-medium">{item.company}</p>
+                  <div className="flex items-center md:justify-end gap-2 text-sm text-slate-500 mt-1">
+                    <Calendar size={14} />
+                    <span>{item.period}</span>
+                  </div>
+                </div>
+                
+                <div className="md:w-1/2 md:pl-12">
+                   {/* Mobile Line */}
+                   <div className="md:hidden absolute left-[5px] top-6 bottom-0 w-px bg-slate-200"></div>
+
+                  <div className={`bg-white p-6 rounded-xl border border-slate-100 shadow-sm transition-all duration-300 ${isOpen ? 'ring-2 ring-amber-500/20' : 'hover:shadow-md'}`}>
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
+                      className="w-full flex items-center justify-between text-sm font-semibold text-amber-600 mb-2 md:hidden"
+                    >
+                      <span>{isOpen ? 'Show Less' : 'Show Details'}</span>
+                      {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </button>
+                    
+                    <ul className={`space-y-2 text-slate-600 list-disc list-outside ml-4 ${!isOpen && 'hidden md:block'}`}>
+                      {item.description.slice(0, isOpen ? item.description.length : 2).map((point, idx) => (
+                        <li key={idx} className="leading-relaxed text-sm md:text-base">{point}</li>
+                      ))}
+                    </ul>
+                    
+                    {!isOpen && item.description.length > 2 && (
+                       <div className="hidden md:block mt-2 text-xs text-slate-400 italic">Click to expand full role details...</div>
+                    )}
+                    
+                     <button 
+                      onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
+                      className="hidden md:flex items-center gap-1 text-xs font-semibold text-amber-600 mt-4 hover:text-amber-700"
+                    >
+                      {isOpen ? <>Show Less <ChevronUp size={14} /></> : <>Show More <ChevronDown size={14} /></>}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        };
+
+        function App() {
+          const [isMenuOpen, setIsMenuOpen] = useState(false);
+          const [activeSection, setActiveSection] = useState('home');
+
+          const scrollTo = (id) => {
+            setIsMenuOpen(false);
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+              setActiveSection(id);
+            }
+          };
+
+          return (
+            <div className="bg-slate-50 min-h-screen font-sans text-slate-800">
+              
+              {/* --- NAVIGATION --- */}
+              <nav className="fixed top-0 left-0 right-0 bg-slate-900 text-white z-50 shadow-lg">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex justify-between h-16 items-center">
+                    <div className="flex items-center gap-2 font-bold text-xl tracking-wider">
+                      <div className="w-8 h-8 bg-amber-500 rounded flex items-center justify-center text-slate-900">AK</div>
+                      <span>ANISH KRISHNA</span>
+                    </div>
+                    
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex space-x-8 text-sm uppercase tracking-wide">
+                      {['Home', 'Profile', 'Experience', 'Skills', 'Education'].map((item) => (
+                        <button 
+                          key={item} 
+                          onClick={() => scrollTo(item.toLowerCase())}
+                          className="hover:text-amber-400 transition-colors"
+                        >
+                          {item}
+                        </button>
+                      ))}
+                      <a href={resumeData.profile.contact.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1 bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-1.5 rounded-full font-bold transition-all">
+                        <Linkedin size={16} /> Connect
+                      </a>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <button className="md:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                      {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Mobile Menu Dropdown */}
+                {isMenuOpen && (
+                  <div className="md:hidden bg-slate-800 border-t border-slate-700">
+                     {['Home', 'Profile', 'Experience', 'Skills', 'Education'].map((item) => (
+                        <button 
+                          key={item} 
+                          onClick={() => scrollTo(item.toLowerCase())}
+                          className="block w-full text-left py-4 px-6 hover:bg-slate-700 border-b border-slate-700/50"
+                        >
+                          {item}
+                        </button>
+                      ))}
+                  </div>
+                )}
+              </nav>
+
+              {/* --- HERO SECTION --- */}
+              <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-slate-900 text-white overflow-hidden">
+                {/* Abstract Background Shapes */}
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-800/30 transform skew-x-12 translate-x-1/4"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"></div>
+
+                <div className="max-w-7xl mx-auto px-4 relative z-10">
+                  <div className="max-w-3xl">
+                    <div className="inline-block px-3 py-1 bg-slate-800 text-amber-400 text-xs font-bold tracking-widest uppercase rounded mb-6 border border-slate-700">
+                      Portfolio
+                    </div>
+                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+                      IT Transition <span className="text-amber-500">Manager</span> & Strategic Lead
+                    </h1>
+                    <p className="text-xl text-slate-400 leading-relaxed mb-8 max-w-2xl">
+                      {resumeData.profile.tagline} Driving operational stability, large-scale transformations, and business-aligned IT outcomes.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <button 
+                        onClick={() => scrollTo('experience')}
+                        className="px-8 py-4 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-lg transition-all shadow-lg hover:shadow-amber-500/25 flex items-center justify-center gap-2"
+                      >
+                        View Experience <ChevronDown size={20} />
+                      </button>
+                      <button className="px-8 py-4 bg-transparent border-2 border-slate-600 hover:border-white text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2">
+                        <Download size={20} /> Download CV
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- PROFILE SUMMARY --- */}
+              <section id="profile" className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4">
+                  <SectionTitle title="Profile Summary" icon={User} />
+                  
+                  <div className="grid md:grid-cols-3 gap-12">
+                    <div className="md:col-span-2 text-slate-600 text-lg leading-relaxed space-y-6 text-justify">
+                       {resumeData.profile.summary.split('\n\n').map((para, i) => (
+                         <p key={i}>{para}</p>
+                       ))}
+                    </div>
+                    
+                    <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100">
+                      <h3 className="text-lg font-bold text-slate-800 mb-6 border-b border-slate-200 pb-2">Key Highlights</h3>
+                      <ul className="space-y-4">
+                        {resumeData.profile.highlights.map((highlight, idx) => (
+                          <li key={idx} className="flex gap-3 text-slate-700">
+                            <div className="mt-1.5 min-w-[8px] h-2 bg-amber-500 rounded-full"></div>
+                            <span className="text-sm font-medium leading-snug">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="mt-8 pt-6 border-t border-slate-200">
+                        <div className="flex items-center gap-2 text-slate-600 mb-2">
+                          <MapPin size={18} className="text-amber-500" />
+                          <span>{resumeData.profile.contact.location}</span>
+                        </div>
+                         <div className="flex items-center gap-2 text-slate-600">
+                          <User size={18} className="text-amber-500" />
+                          <span>{resumeData.profile.contact.nationality}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* --- EXPERIENCE --- */}
+              <section id="experience" className="py-20 bg-slate-50">
+                <div className="max-w-7xl mx-auto px-4">
+                  <SectionTitle title="Professional Experience" icon={Briefcase} />
+                  
+                  <div className="mt-12 relative">
+                    {resumeData.experience.map((job, idx) => (
+                      <ExperienceCard 
+                        key={idx} 
+                        item={job} 
+                        isLast={idx === resumeData.experience.length - 1} 
+                      />
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* --- SKILLS --- */}
+              <section id="skills" className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4">
+                  <SectionTitle title="Technical Capabilities" icon={Code} />
+                  
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Object.entries(resumeData.skills).map(([category, items]) => (
+                      <div key={category} className="group bg-slate-50 hover:bg-white border border-slate-100 hover:border-amber-200 p-6 rounded-xl transition-all hover:shadow-lg">
+                        <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                          <div className="w-1.5 h-6 bg-amber-500 rounded-full"></div>
+                          {category}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {items.map((skill) => (
+                            <span 
+                              key={skill} 
+                              className="px-3 py-1 bg-white border border-slate-200 text-slate-600 text-sm rounded-md font-medium group-hover:border-amber-100 group-hover:text-slate-800 transition-colors"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* --- EDUCATION & CERTS --- */}
+              <section id="education" className="py-20 bg-slate-900 text-white">
+                <div className="max-w-7xl mx-auto px-4">
+                  <div className="grid md:grid-cols-2 gap-16">
+                    
+                    {/* Education */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-8">
+                        <div className="p-3 bg-amber-500 rounded-lg text-slate-900">
+                          <GraduationCap size={24} />
+                        </div>
+                        <h2 className="text-3xl font-bold tracking-tight">Education</h2>
+                      </div>
+                      
+                      <div className="space-y-8">
+                        {resumeData.education.map((edu, idx) => (
+                          <div key={idx} className="border-l-2 border-slate-700 pl-6 relative">
+                             <div className="absolute -left-[5px] top-2 w-2 h-2 bg-amber-500 rounded-full"></div>
+                            <h3 className="text-xl font-bold text-white">{edu.degree}</h3>
+                            <p className="text-amber-500 font-medium mb-1">{edu.school}</p>
+                            <p className="text-slate-400 text-sm">{edu.period}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Certifications */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-8">
+                        <div className="p-3 bg-amber-500 rounded-lg text-slate-900">
+                          <Award size={24} />
+                        </div>
+                        <h2 className="text-3xl font-bold tracking-tight">Certifications</h2>
+                      </div>
+                      
+                      <div className="grid gap-4">
+                        {resumeData.certifications.map((cert, idx) => (
+                          <div key={idx} className="bg-slate-800 p-4 rounded-lg flex items-center justify-between group hover:bg-slate-700 transition-colors">
+                            <span className="font-semibold text-lg">{cert}</span>
+                            <div className="opacity-0 group-hover:opacity-100 text-amber-500 transition-opacity">
+                              <Award size={20} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              {/* --- FOOTER --- */}
+              <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+                <div className="max-w-7xl mx-auto px-4 text-center">
+                  <div className="flex justify-center items-center gap-3 font-bold text-2xl text-white mb-6">
+                    <div className="w-10 h-10 bg-amber-500 rounded flex items-center justify-center text-slate-950">AK</div>
+                    ANISH KRISHNA
+                  </div>
+                  
+                  <div className="flex justify-center gap-6 mb-8">
+                    <a href={resumeData.profile.contact.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-slate-900 rounded-full hover:bg-amber-500 hover:text-slate-900 transition-all">
+                      <Linkedin size={24} />
+                    </a>
+                    <a href={`mailto:${resumeData.profile.contact.email}`} className="p-3 bg-slate-900 rounded-full hover:bg-amber-500 hover:text-slate-900 transition-all">
+                      <Mail size={24} />
+                    </a>
+                  </div>
+
+                  <p className="text-sm">
+                    © {new Date().getFullYear()} Anish Krishna. All rights reserved.
+                  </p>
+                  <p className="text-xs text-slate-600 mt-2">
+                    Last updated Feb 2026
+                  </p>
+                </div>
+              </footer>
+
+            </div>
+          );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
